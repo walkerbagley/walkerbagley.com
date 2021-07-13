@@ -1,0 +1,42 @@
+import Link from 'next/link'
+
+export default function Navbar() {
+	return (
+        <>
+            <div className="navbar">
+                <Link href="/">
+                    <a className="logo">
+                        <div className="first">WALKER</div>
+                        <div className="second">BAGLEY</div>
+                    </a>
+                </Link>
+                <Link href="/contact">
+                    <a className="contact">Contact Me</a>
+                </Link>
+            </div>
+            <style jsx global>{`
+                .navbar{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 1em 10vw;
+                    color: #222222;
+                    //background-color: green;
+                }
+                .logo{
+                    display: flex;
+                    font-size: 1.5em;
+                    font-weight: 300;
+                }
+                .second{
+                    padding-left: .05em;
+                    font-weight: 600;
+                }
+                a:hover{
+                    color: #1e94e3;
+                    transition: color .2s ease;
+                }
+            `}</style>
+        </>
+    )
+}
