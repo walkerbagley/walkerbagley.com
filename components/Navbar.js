@@ -20,7 +20,7 @@ export default function Navbar() {
                     align-items: center;
                     justify-content: space-between;
                     padding: 1em 10vw;
-                    color: #222222;
+                    color: var(--charcoal);
                     //background-color: green;
                 }
                 .logo{
@@ -33,7 +33,7 @@ export default function Navbar() {
                     font-weight: 600;
                 }
                 a:hover{
-                    color: #1e94e3;
+                    color: var(--accent);
                     transition: color .2s ease;
                 }
             `}</style>
