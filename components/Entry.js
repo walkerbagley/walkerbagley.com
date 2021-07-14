@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function Entry({ metadata, tags, url }) {
 
     let tagList = Object.values(tags);
@@ -11,7 +13,7 @@ export default function Entry({ metadata, tags, url }) {
     return (
         <>
             <div className={classList}>
-                <div className="image"><img src={url} alt="" /></div>
+                <div className="image"><Image src={url} layout="fill"></Image></div>
                 <div className="data">
                     <div className="metadata">
                         <div className="entry">{metadata[0]}</div>
