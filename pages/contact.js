@@ -59,12 +59,20 @@ export default function contact() {
                 </a>
             </div>
 			<style jsx>{`
-                @keyframes slideInFromTop {
+                @keyframes slideInFromLeft {
                     0% {
-                      transform: translateY(-50%);
+                      transform: translateX(-50%);
                     }
                     100% {
-                      transform: translateY(0);
+                      transform: translateX(0);
+                    }
+                }
+                @keyframes slideInFromRight {
+                    0% {
+                      transform: translateX(50%);
+                    }
+                    100% {
+                      transform: translateX(0);
                     }
                 }
                 .grid{
@@ -83,9 +91,12 @@ export default function contact() {
                     justify-content: space-between;
                     background-color: #f3f3f3;
                     border-radius: 1em;
+                    transition: padding .2s ease;
                     //animation: .3s ease-out 0s 1 slideInFromTop;
                 }
-                
+                .container:hover{
+                    padding: 3em 5em;
+                }
                 .icon{
                     width: 100px;
                     height: 100px;
