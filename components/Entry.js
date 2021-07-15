@@ -39,6 +39,7 @@ export default function Entry({ metadata, tags, url }) {
                     align-items: center;
                     justify-content: center;
                 }
+                Image,
                 .image img{
                     max-width: 100%;
                     max-height: 350px; 
