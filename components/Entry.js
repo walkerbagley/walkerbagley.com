@@ -13,7 +13,7 @@ export default function Entry({ metadata, tags, url }) {
     return (
         <>
             <div className={classList}>
-                <div className="image"><Image src={url} width="100%" height="100%"></Image></div>
+                <div className="image"><Image src={url} layout="fill"></Image></div>
 
                 <div className="data">
                     <div className="metadata">
