@@ -14,6 +14,7 @@ export default function Entry({ metadata, tags, url }) {
         <>
             <div className={classList}>
                 <div className="image"><img src={url}></img></div>
+                {/* <Image src={url} width="100%" height="100%"></Image> */}
                 <div className="data">
                     <div className="metadata">
                         <div className="entry">{metadata[0]}</div>
@@ -31,11 +32,16 @@ export default function Entry({ metadata, tags, url }) {
             <style jsx global>{`
                 .container{
                     width: 100%;
-                    height: auto;
+                    height: 100%;
+                    // border: 3px solid red;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
                 }
                 .image img{
-                    width: 100%;
-                    height: auto;
+                    max-width: 100%;
+                    max-height: 350px; 
                 }
                 .data{
                     display: none;
