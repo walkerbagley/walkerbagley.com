@@ -13,7 +13,7 @@ export default function Entry({ metadata, tags, url }) {
     return (
         <>
             <div className={classList}>
-                <div className="image"><Image src={url} className="next" layout="fill"></Image></div>
+                <div className="image"><Image src={url} className="next" layout="fill" objectFit='cover'></Image></div>
 
                 <div className="data">
                     <div className="metadata">
@@ -39,24 +39,16 @@ export default function Entry({ metadata, tags, url }) {
                     align-items: center;
                     justify-content: center;
                 }
-                .image {
-                    display: inline-block;
-                    position: unset !important;
-                    height: 100%;
+                .image{
+                    position: relative;
+                    // max-height: 350px;
+                    width: 100%;
+                    height: 275px;
                 }
-                .next {
-                    object-fit: contain;
-                    width: auto !important;
-                    position: relative !important;
-                    height: 100% !important;
+                .next{
+                    max-width: 100%;
+                    max-height: 350px; 
                 }
-                // .image{
-                //     position: relative;
-                // }
-                // .next{
-                //     max-width: 100%;
-                //     max-height: 350px; 
-                // }
                 .image img{
                     max-width: 100%;
                     max-height: 350px; 
