@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import styles from './Entry.module.css'
 
 export default function Entry({ metadata, tags, url }) {
 
@@ -13,7 +14,7 @@ export default function Entry({ metadata, tags, url }) {
     return (
         <>
             <div className={classList}>
-                <div className="image"><Image src={url} className="next" layout="fill" objectFit='cover'></Image></div>
+                <div className={styles.image}><Image src={url} className={styles.next} layout="fill" objectFit='cover'></Image></div>
 
                 <div className="data">
                     <div className="metadata">
@@ -38,16 +39,6 @@ export default function Entry({ metadata, tags, url }) {
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
-                }
-                .image{
-                    position: relative;
-                    // max-height: 350px;
-                    width: 100%;
-                    height: 275px;
-                }
-                .next{
-                    max-width: 100%;
-                    max-height: 350px; 
                 }
                 .image img{
                     max-width: 100%;
