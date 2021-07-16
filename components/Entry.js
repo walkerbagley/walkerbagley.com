@@ -39,13 +39,29 @@ export default function Entry({ metadata, tags, url }) {
                     align-items: center;
                     justify-content: center;
                 }
-                .image{
-                    position: relative;
+                .image {
+                    display: inline-block;
+                    height: 30px;
+                
+                    & > div {
+                        position: unset !important;
+                        height: 100%;
+                    }
+                
+                    .next {
+                        object-fit: contain;
+                        width: auto !important;
+                        position: relative !important;
+                        height: 100% !important;
+                    }
                 }
-                .next{
-                    max-width: 100%;
-                    max-height: 350px; 
-                }
+                // .image{
+                //     position: relative;
+                // }
+                // .next{
+                //     max-width: 100%;
+                //     max-height: 350px; 
+                // }
                 .image img{
                     max-width: 100%;
                     max-height: 350px; 
