@@ -41,19 +41,14 @@ export default function Entry({ metadata, tags, url }) {
                 }
                 .image {
                     display: inline-block;
-                    height: 30px;
-                
-                    & > div {
-                        position: unset !important;
-                        height: 100%;
-                    }
-                
-                    .next {
-                        object-fit: contain;
-                        width: auto !important;
-                        position: relative !important;
-                        height: 100% !important;
-                    }
+                    position: unset !important;
+                    height: 100%;
+                }
+                .next {
+                    object-fit: contain;
+                    width: auto !important;
+                    position: relative !important;
+                    height: 100% !important;
                 }
                 // .image{
                 //     position: relative;
