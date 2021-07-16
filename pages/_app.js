@@ -10,7 +10,7 @@ export default function CustomApp({ Component, pageProps }) {
 			<meta name="description" content="Walker Bagley's Photography Portfolio" />
 			<link rel="icon" href="/favicon.ico" />
 			<script async src="https://www.googletagmanager.com/gtag/js?id=G-0QDS47PL1L"></script>
-			<script>
+			<script
 				dangerouslySetInnerHTML={{
 					__html: `
 				window.dataLayer = window.dataLayer || [];
@@ -19,7 +19,7 @@ export default function CustomApp({ Component, pageProps }) {
 				gtag('config', 'G-0QDS47PL1L');
 				`,
 				}}
-			</script>
+			/>
 		</Head>
 		<Navbar />
 		<Component {...pageProps} />
