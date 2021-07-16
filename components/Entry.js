@@ -39,7 +39,7 @@ export default function Entry({ metadata, tags, url }) {
                     align-items: center;
                     justify-content: center;
                 }
-                .image:{
+                .image{
                     position: relative;
                 }
                 .next{
