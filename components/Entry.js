@@ -39,6 +39,9 @@ export default function Entry({ metadata, tags, url }) {
                     align-items: center;
                     justify-content: center;
                 }
+                .image:{
+                    position: relative;
+                }
                 .next{
                     max-width: 100%;
                     max-height: 350px; 
