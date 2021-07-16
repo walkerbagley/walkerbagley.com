@@ -1,6 +1,4 @@
-import Link from 'next/link'
 import Head from 'next/head'
-import ContactCard from '../components/ContactCard'
 
 export default function contact() {
     return (
@@ -9,10 +7,6 @@ export default function contact() {
                 <title>Contact Me</title>
             </Head>
             <div className="grid">
-                {/* <ContactCard title="Instagram" color="var(--accent)" icon="instagram.png" info="@bagley.photo" link="https://instagram.com/bagley.photo"/>
-                <ContactCard title="LinkedIn" color="var(--accent)" icon="linkedin.png" info="@walkerbagley" link="https://www.linkedin.com/in/walkerbagley/"/>
-                <ContactCard title="Email" color="var(--accent)" icon="email.png" info="walkerabagley@gmail.com" link="mailto:walkerabagley@gmail.com"/>
-                <ContactCard title="Phone" color="var(--accent)" icon="phone.png" info="(480)-765-7235" link="tel:4807657235"/> */}
                 <a href="https://instagram.com/bagley.photo" target="_blank" rel="noopener noreferrer">
                     <div className="container">
                         <div className="icon">
