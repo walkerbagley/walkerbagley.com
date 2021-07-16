@@ -39,6 +39,7 @@ export default function Entry({ metadata, tags, url }) {
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
+                    padding-bottom: 1.5em;
                 }
                 .image img{
                     max-width: 100%;

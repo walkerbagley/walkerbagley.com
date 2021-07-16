@@ -15,11 +15,23 @@ export default function Home() {
 			<style jsx global>{`
 				.grid{
 					padding: 5em 10vw;
-					display: grid;
-					grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-					grid-template-rows: repeat(auto-fit, minmax(1fr, min-content));
-					gap: 1.5em;
+					// display: grid;
+					// grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+					// grid-template-rows: repeat(auto-fit, minmax(1fr, min-content));
+					// gap: 1.5em;
+					columns: 3;
+					column-gap: 1.5em;
 				}
+				@media only screen and (max-width: 900px) {
+                    .grid {
+                      columns: 2;
+                    }
+                }
+				@media only screen and (max-width: 500px) {
+                    .grid {
+                      columns: 1;
+                    }
+                }
       		`}</style>
 		</>
 	)
