@@ -26,11 +26,13 @@ export default function Home() {
 					padding: 0 10vw;
 					padding-top: 2em;
 					display: flex;
+					flex-wrap: wrap;
 					align-itmes: center;
 					justify-content: center;
+					gap: .75em;
 				}
 				.filter{
-					margin: 0 .5em;
+					margin: 0;
 					padding: .4em 1em;
 					border: 2px solid var(--charcoal);
 					border-radius: .5em;
