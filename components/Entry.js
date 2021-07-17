@@ -1,22 +1,26 @@
 import Image from 'next/image'
 import styles from './Entry.module.css'
 
-export default function Entry({ metadata, tags, url }) {
-
+export default function Entry({ metadata, tags, url, toggle }) {
     let tagList = Object.values(tags);
     let classList = "container";
     for (const tag of tagList) {
         classList += " ";
         classList += String(tag);
-        console.log(classList);
     };
+
+    let show = " hide";
+    if (classList.includes(toggle) || toggle === 'all') {
+        show = "";
+    }
+    classList += show;
 
     return (
         <>
             <div className={classList}>
                 <div className={styles.image}><Image src={url} className={styles.next} layout="fill" objectFit='cover'></Image></div>
 
-                <div className="data">
+                <div className="data hide">
                     <div className="metadata">
                         <div className="entry">{metadata[0]}</div>
                         <div className="entry">{metadata[1]}</div>
@@ -45,7 +49,7 @@ export default function Entry({ metadata, tags, url }) {
                     max-width: 100%;
                     max-height: 350px; 
                 }
-                .data{
+                .hide{
                     display: none;
                 }
             `}</style>
