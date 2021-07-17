@@ -10,7 +10,8 @@ export default function Home() {
 				<div onClick={()=> setActive('all')} className={`filter ${active === 'all' ? 'active' : ''}`}>All</div>
 				<div onClick={()=> setActive('landscape')} className={`filter ${active === 'landscape' ? 'active' : ''}`}>Landscapes</div>
 				<div onClick={()=> setActive('astrophotography')} className={`filter ${active === 'astrophotography' ? 'active' : ''}`}>Astrophotography</div>
-				<div onClick={()=> setActive('portrait')} className={`filter ${active === 'portrait' ? 'active' : ''}`}>Portraits</div>
+				<div onClick={() => setActive('portrait')} className={`filter ${active === 'portrait' ? 'active' : ''}`}>Portraits</div>
+				<div onClick={()=> setActive('car')} className={`filter ${active === 'car' ? 'active' : ''}`}>Cars</div>
 			</div>
 			<div className="grid">
 				<Entry metadata={{ "0": "Single Shot", "1": "30mm", "2": "1/1250\"", "3": "f/2", "4": "ISO 100", "5": "17 Oct 2020", "6": "Moon Valley, AZ" }} tags={{ "0": "sunset", "1": "car" }} url="https://drive.google.com/uc?export=view&id=1NzvR57wR9Bz3uq7tS943w6q7DkqUPDUq" toggle={active} />
