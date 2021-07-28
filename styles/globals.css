@@ -1,7 +1,16 @@
 * {
 	box-sizing: border-box;
 	--accent: #1e94e3;
-	--charcoal: #222222;
+}
+body,
+body[data-theme="light"] {
+	--primary: #ffffff;
+	--secondary: #222222;
+}
+
+body[data-theme="dark"] {
+	--primary: #222222;
+	--secondary: #ffffff;
 }
 
 html,

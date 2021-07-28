@@ -85,7 +85,7 @@ export default function contact() {
                     background-color: #f3f3f3;
                     border-radius: 1em;
                     transition: padding .2s ease;
-                    //animation: .3s ease-out 0s 1 slideInFromTop;
+                    // animation: .3s ease-out 0s 1 slideInFromTop;
                 }
                 .container:hover{
                     padding: 3em 5em;
@@ -106,7 +106,7 @@ export default function contact() {
                     text-align: right;
                     font-size: 1.1em;
                     font-weight: 300;
-                    color: var(--charcoal);
+                    color: var(--secondary);
                     transition: color .2s ease;
                 }
                 .title{

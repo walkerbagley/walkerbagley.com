@@ -45,6 +45,10 @@ export default function Entry({ metadata, tags, url, toggle }) {
                     justify-content: center;
                     padding-bottom: 1.5em;
                 }
+                .image{
+                    width: 100%;
+                    height: 100%;
+                }
                 .image img{
                     max-width: 100%;
                     max-height: 350px; 

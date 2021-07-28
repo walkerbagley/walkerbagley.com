@@ -20,8 +20,8 @@ export default function Navbar() {
                     align-items: center;
                     justify-content: space-between;
                     padding: 1em 10vw;
-                    color: var(--charcoal);
-                    //background-color: green;
+                    color: var(--secondary);
+                    background-color: var(--primary);
                 }
                 .logo{
                     display: flex;

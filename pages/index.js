@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import Entry from '../components/Entry'
+import Modal from '../components/Modal'
 
 export default function Home() {
 	const [active, setActive] = useState('all');
 	
 	return (
 		<>
+			<Modal active={ active}/>
 			<div className="filters">
 				<div onClick={()=> setActive('all')} className={`filter ${active === 'all' ? 'active' : ''}`}>All</div>
 				<div onClick={()=> setActive('landscape')} className={`filter ${active === 'landscape' ? 'active' : ''}`}>Landscapes</div>
@@ -14,7 +16,7 @@ export default function Home() {
 				<div onClick={()=> setActive('car')} className={`filter ${active === 'car' ? 'active' : ''}`}>Cars</div>
 			</div>
 			<div className="grid">
-				<Entry metadata={{ "0": "Single Shot", "1": "30mm", "2": "1/1250\"", "3": "f/2", "4": "ISO 100", "5": "17 Oct 2020", "6": "Moon Valley, AZ" }} tags={{ "0": "sunset", "1": "car" }} url="https://drive.google.com/uc?export=view&id=1NzvR57wR9Bz3uq7tS943w6q7DkqUPDUq" toggle={active} />
+				<Entry metadata={{ "0": "Single Shot", "1": "30mm", "2": "1/1250\"", "3": "f/2", "4": "ISO 100", "5": "17 Oct 2020", "6": "Moon Valley, AZ" }} tags={{ "0": "sunset", "1": "car" }} url="https://drive.google.com/uc?export=view&id=1NzvR57wR9Bz3uq7tS943w6q7DkqUPDUq" toggle={active}/>
 				<Entry metadata={{ "0": "Single Shot", "1": "-", "2": "-", "3": "-", "4": "-", "5": "28 May 2020", "6": "Flagstaff, AZ" }} tags={{ "0": "flagstaff", "1": "landscape" }} url="https://drive.google.com/uc?export=view&id=1kvK-QYw3LLgFQDAAjXFpsvYJ79dXIY94" toggle={active} />
 				<Entry metadata={{ "0": "Single Shot", "1": "-", "2": "-", "3": "-", "4": "-", "5": "28 May 2020", "6": "Grand Canyon, AZ" }} tags={{ "0": "grandCanyon", "1": "landscape" }} url="https://drive.google.com/uc?export=view&id=1w7HnIgYBw8Cs234qOwFrzPI1dNgSsdf5" toggle={active} />
 				<Entry metadata={{ "0": "Single Shot", "1": "35mm", "2": "5\"", "3": "f/1.4", "4": "ISO 50", "5": "7 Jul 2021", "6": "Saguaro Lake, AZ" }} tags={{ "0": "astrophotography", "1": "landscape" }} url="https://drive.google.com/uc?export=view&id=1qfht4XgM0X1Npe9yEfqH0STqqTPxfPK6" toggle={active} />
@@ -31,11 +33,12 @@ export default function Home() {
 					align-itmes: center;
 					justify-content: center;
 					gap: .75em;
+					background-color: var(--primary);
 				}
 				.filter{
 					margin: 0;
 					padding: .4em 1em;
-					border: 2px solid var(--charcoal);
+					border: 2px solid var(--secondary);
 					border-radius: .5em;
 					transition: all .25s ease;
 				}
@@ -48,6 +51,7 @@ export default function Home() {
 				}
 				.grid{
 					padding: 3em 10vw;
+					background-color: var(--primary);
 					columns: 3;
 					column-gap: 1.5em;
 					// display: grid;
