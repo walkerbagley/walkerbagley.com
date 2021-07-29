@@ -2,12 +2,7 @@ import Image from 'next/image'
 import styles from './Entry.module.css'
 
 export default function Entry({ metadata, tags, url, toggle }) {
-    let tagList = Object.values(tags);
-    let classList = "container";
-    for (const tag of tagList) {
-        classList += " ";
-        classList += String(tag);
-    };
+    let classList = "container " + String(tags);
 
     let show = " hide";
     if (classList.includes(toggle) || toggle === 'all') {
@@ -15,9 +10,11 @@ export default function Entry({ metadata, tags, url, toggle }) {
     }
     classList += show;
 
+    // console.log(metadata);
+
     return (
         <>
-            <div className={classList}>
+            <div className={classList} onContextMenu={(e)=>e.preventDefault()}>
                 <div className={styles.image}><Image src={url} className={styles.next} layout="fill" objectFit='cover'></Image></div>
 
                 <div className="data hide">
