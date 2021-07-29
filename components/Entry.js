@@ -1,21 +1,32 @@
 import Image from 'next/image'
 import styles from './Entry.module.css'
 
-export default function Entry({ metadata, tags, url, toggle }) {
+export default function Entry({ metadata, date, tags, url, toggle }) {
     let classList = "container " + String(tags);
 
+    // Show/hide entry based on selected tag
     let show = " hide";
     if (classList.includes(toggle) || toggle === 'all') {
         show = "";
     }
     classList += show;
+    
+    // Date manipulation
+    const realDate = new Date("20" + String(date).substring(0, 2) + "-" + String(date).substring(2, 4) + "-" + String(date).substring(4));
+    realDate.setHours(24);
+    let dateContent = realDate.toDateString().slice(4);
+    dateContent = dateContent.substring(4, 7) + dateContent.substring(0, 4) + dateContent.substring(7);
+    
+    // url handling
+    const finalURL = "https://drive.google.com/uc?export=view&id=" + url;
 
     // console.log(metadata);
+    // console.log(dateContent);
 
     return (
         <>
             <div className={classList} onContextMenu={(e)=>e.preventDefault()}>
-                <div className={styles.image}><Image src={url} className={styles.next} layout="fill" objectFit='cover'></Image></div>
+                <div className={styles.image}><Image src={finalURL} className={styles.next} layout="fill" objectFit='cover'></Image></div>
 
                 <div className="data hide">
                     <div className="metadata">
@@ -26,8 +37,8 @@ export default function Entry({ metadata, tags, url, toggle }) {
                         <div className="entry">{metadata[4]}</div>
                     </div>
                     <div className="other">
-                        <div className="date">{metadata[5]}</div>
-                        <div className="location">{metadata[6]}</div>
+                        <div className="date">{dateContent}</div>
+                        <div className="location">{metadata[5]}</div>
                     </div>
                 </div>
             </div>

@@ -5,13 +5,15 @@ export default function Home() {
 	const [active, setActive] = useState('all');
 	
 	let images = [
-		[["Single Shot", "30mm", "1/1250\"", "f/2", "ISO 100", "17 Oct 2020", "Moon Valley, AZ"], "sunset car", "https://drive.google.com/uc?export=view&id=1NzvR57wR9Bz3uq7tS943w6q7DkqUPDUq"],
-		[["Single Shot", "-", "-", "-", "-", "28 May 2020", "Flagstaff, AZ"], "flagstaff landscape", "https://drive.google.com/uc?export=view&id=1kvK-QYw3LLgFQDAAjXFpsvYJ79dXIY94"],
-		[["Single Shot", "-", "-", "-", "-", "28 May 2020", "Grand Canyon, AZ"], "grandCanyon landscape", "https://drive.google.com/uc?export=view&id=1w7HnIgYBw8Cs234qOwFrzPI1dNgSsdf5"],
-		[["Single Shot", "35mm", "5\"", "f/1.4", "ISO 50", "7 Jul 2021", "Saguaro Lake, AZ"], "astrophotography landscape", "https://drive.google.com/uc?export=view&id=1qfht4XgM0X1Npe9yEfqH0STqqTPxfPK6"],
-		[["Panorama", "35mm", "15\"", "f/1.4", "ISO 400", "7 Jul 2021", "Saguaro Lake, AZ"], "astrophotography landscape", "https://drive.google.com/uc?export=view&id=1_cIQaIP2_mWnf7z6RgGOYr9RDE4abyJ_"],
-		[["Single Shot", "30mm", "1/100\"", "f/1.6", "ISO 3200", "24 Aug 2020", "Scottsdale, AZ"], "dog portrait", "https://drive.google.com/uc?export=view&id=1yiepSGAu_dyG-iwT6o3WJuXVqO_QaCzk"],
+		{metadata: ["Single Shot", "30mm", "1/1250\"", "f/2", "ISO 100", "Moon Valley, AZ"], date: 201017, tags: "sunset car", url: "1NzvR57wR9Bz3uq7tS943w6q7DkqUPDUq"},
+		{metadata: ["Single Shot", "-", "-", "-", "-", "Flagstaff, AZ"], date: 200528, tags: "flagstaff landscape", url: "1kvK-QYw3LLgFQDAAjXFpsvYJ79dXIY94"},
+		{metadata: ["Single Shot", "-", "-", "-", "-", "Grand Canyon, AZ"], date: 200528, tags: "grandCanyon landscape", url: "1w7HnIgYBw8Cs234qOwFrzPI1dNgSsdf5"},
+		{metadata: ["Single Shot", "35mm", "5\"", "f/1.4", "ISO 50", "Saguaro Lake, AZ"], date: 210707, tags: "astrophotography landscape", url: "1qfht4XgM0X1Npe9yEfqH0STqqTPxfPK6"},
+		{metadata: ["Panorama", "35mm", "15\"", "f/1.4", "ISO 400", "Saguaro Lake, AZ"], date: 210707, tags: "astrophotography landscape", url: "1_cIQaIP2_mWnf7z6RgGOYr9RDE4abyJ_"},
+		{metadata: ["Single Shot", "30mm", "1/100\"", "f/1.6", "ISO 3200", "Scottsdale, AZ"], date: 200824, tags: "dog portrait", url: "1yiepSGAu_dyG-iwT6o3WJuXVqO_QaCzk"}
 	];
+
+	const sortedImages = images.sort((a, b) => b.date - a.date);
 
 	return (
 		<>
@@ -23,8 +25,8 @@ export default function Home() {
 				<div onClick={()=> setActive('car')} className={`filter ${active === 'car' ? 'active' : ''}`}>Cars</div>
 			</div>
 			<div className="grid">
-				{images.map(image => (
-					<Entry key={image} metadata={image[0]} tags={image[1]} url={image[2]} toggle={active} />
+				{sortedImages.map(image => (
+					<Entry key={image} metadata={image['metadata']} date={image['date']} tags={image['tags']} url={image['url']} toggle={active} />
 				))}
 			</div>
 
