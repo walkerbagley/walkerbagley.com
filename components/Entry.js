@@ -52,6 +52,7 @@ export default function Entry({ metadata, date, tags, url, toggle }) {
                     align-items: center;
                     justify-content: center;
                     padding-bottom: 1.5em;
+                    //animation: slide .2s 2s ease;
                 }
                 .image img{
                     max-width: 100%;
@@ -59,6 +60,16 @@ export default function Entry({ metadata, date, tags, url, toggle }) {
                 }
                 .hide{
                     display: none;
+                }
+                @keyframes slide{
+                    from{
+                        margin-top: -5em;
+                        opacity: 0;
+                    }
+                    to{
+                        margin-top: 0;
+                        opacity: 1;
+                    }
                 }
             `}</style>
         </>

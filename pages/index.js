@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Entry from '../components/Entry'
 
 export default function Home() {
-	const [searchToggle, setSearchToggle] = useState(true);
+	const [searchToggle, setSearchToggle] = useState(false);
 	const [activeFilter, setActiveFilter] = useState('all');
 	const [activeSort, setActiveSort] = useState('newest');
 	const [sortedEntries, setSortedEntries] = useState([]);
@@ -43,7 +43,7 @@ export default function Home() {
 						<svg version="1.1" id="Capa_1" x="0px" y="0px" width="451.847px" height="451.847px" viewBox="0 0 451.847 451.847" style={{ enableBackground: 'new 0 0 451.847 451.847' }}><g><path d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z" /></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
 					</div>
 				</div>
-				<div className={`filters ${!searchToggle ? 'hide' : ''}`}>
+				<div className={`filters ${!searchToggle ? 'hideFilter' : ''}`}>
 					<div className="searchName">Filter</div>
 					<div onClick={()=> setActiveFilter('all')} className={`filter ${activeFilter === 'all' ? 'active' : ''}`}>All</div>
 					<div onClick={()=> setActiveFilter('landscape')} className={`filter ${activeFilter === 'landscape' ? 'active' : ''}`}>Landscapes</div>
@@ -51,7 +51,7 @@ export default function Home() {
 					<div onClick={() => setActiveFilter('portrait')} className={`filter ${activeFilter === 'portrait' ? 'active' : ''}`}>Portraits</div>
 					<div onClick={()=> setActiveFilter('car')} className={`filter ${activeFilter === 'car' ? 'active' : ''}`}>Cars</div>
 				</div>
-				<div className={`filters ${!searchToggle ? 'hide' : ''}`}>
+				<div className={`filters ${!searchToggle ? 'hideFilter' : ''}`}>
 					<div className="searchName">Sort</div>
 					<div onClick={()=> setActiveSort('newest')} className={`filter ${activeSort === 'newest' ? 'active' : ''}`}>Date (Newest)</div>
 					<div onClick={()=> setActiveSort('oldest')} className={`filter ${activeSort === 'oldest' ? 'active' : ''}`}>Date (Oldest)</div>
@@ -65,7 +65,8 @@ export default function Home() {
 
 			<style jsx global>{`
 				.search{
-					padding: 1em 10vw;
+					padding: 2em 10vw;
+					overflow: hidden;
 				}
 				.filters{
 					padding: 1em 0;
@@ -74,11 +75,13 @@ export default function Home() {
 					align-itmes: center;
 					justify-content: left;
 					gap: .75em;
-					transition: all .2s ease;
+					transition: all .5s ease;
 				}
 				.filters:first-of-type{
+					display: flex;
 					justify-content: space-between;
 					padding-top: 0;
+					margin-top: -1em;
 				}
 				.filters:first-of-type .searchName{
 					font-size: 1.8em;
@@ -107,8 +110,8 @@ export default function Home() {
 				.left svg{
 					transform: rotate(90deg);
 				}
-				.hide{
-					margin-top: -4.2em;
+				.hideFilter{
+					margin-top: -20%;
 					opacity: 0;
 					pointer-events: none;
 				}
@@ -133,7 +136,8 @@ export default function Home() {
 					border: 2px solid transparent;
 				}
 				.grid{
-					padding: 2em 10vw;
+					margin-top: 3em;
+					padding: .2em 10vw;
 					columns: 3;
 					column-gap: 1.5em;
 					// display: grid;
@@ -147,7 +151,17 @@ export default function Home() {
                     }
                 }
 				@media only screen and (max-width: 500px) {
-                    .grid {
+                    .filters{
+						display: block;
+					}
+					.filter{
+						margin: .5em 0;
+						width: auto;
+					}
+					.hideFilter{
+						margin-top: -80%;
+					}
+					.grid {
                       columns: 1;
                     }
                 }
