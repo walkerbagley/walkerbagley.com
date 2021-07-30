@@ -82,7 +82,7 @@ export default function contact() {
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
-                    background-color: #f3f3f3;
+                    background-color: var(--shadow);
                     border-radius: 1em;
                     transition: padding .2s ease;
                     //animation: .3s ease-out 0s 1 slideInFromTop;

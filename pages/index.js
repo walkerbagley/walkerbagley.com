@@ -105,10 +105,12 @@ export default function Home() {
 				.collapseIcon svg{
 					width: 100%;
 					height: 100%;
-					transition: transform .2s ease;
+					fill: var(--accent);
+					transition: all .2s ease;
 				}
 				.left svg{
 					transform: rotate(90deg);
+					fill: var(--secondary);
 				}
 				.hideFilter{
 					margin-top: -20%;
@@ -124,7 +126,7 @@ export default function Home() {
 				.filter{
 					margin: 0;
 					padding: .4em 1em;
-					border: 2px solid var(--charcoal);
+					border: 2px solid var(--secondary);
 					border-radius: .5em;
 					transition: all .25s ease;
 				}

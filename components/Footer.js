@@ -8,7 +8,7 @@ export default function Footer() {
                     padding: 2em 10vw;
                     text-align: center;
                     font-weight: 400;
-                    color: var(--charcoal);
+                    color: var(--secondary);
                 }
             `}</style>
         </>

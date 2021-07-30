@@ -25,5 +25,23 @@ export default function CustomApp({ Component, pageProps }) {
 		<Navbar />
 		<Component {...pageProps} />
 		<Footer />
+		<style jsx global>{`
+			*{
+				--accent: #1e94e3;
+				--primary: #ffffff;
+				--secondary: #222222;
+				--shadow: #f3f3f3;
+			}
+			body{
+				background-color: var(--primary);
+			}
+			@media (prefers-color-scheme: dark) {
+				*{
+					--primary: #222222;
+					--secondary: #ffffff;
+					--shadow: #3f3f3f;
+				}
+			}
+		`}</style>
 	</>
 }

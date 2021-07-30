@@ -20,7 +20,7 @@ export default function Navbar() {
                     align-items: center;
                     justify-content: space-between;
                     padding: 1em 10vw;
-                    color: var(--charcoal);
+                    color: var(--secondary);
                     //background-color: green;
                 }
                 .logo{

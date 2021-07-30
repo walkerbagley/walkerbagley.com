@@ -1,7 +1,5 @@
 * {
 	box-sizing: border-box;
-	--accent: #1e94e3;
-	--charcoal: #222222;
 }
 
 html,
@@ -10,6 +8,7 @@ body {
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
 		Helvetica Neue, sans-serif;
+	color: var(--secondary);
 }
 
 a {
