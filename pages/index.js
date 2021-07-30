@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Entry from '../components/Entry'
 
 export default function Home() {
-	const [active, setActive] = useState('all');
-	
+	const [searchToggle, setSearchToggle] = useState(true);
+	const [activeFilter, setActiveFilter] = useState('all');
+	const [activeSort, setActiveSort] = useState('newest');
+	const [sortedEntries, setSortedEntries] = useState([]);
+
+	// Array of Entry objects to populate gallery in mapping function html
 	let images = [
 		{metadata: ["Single Shot", "30mm", "1/1250\"", "f/2", "ISO 100", "Moon Valley, AZ"], date: 201017, tags: "sunset car", url: "1NzvR57wR9Bz3uq7tS943w6q7DkqUPDUq"},
 		{metadata: ["Single Shot", "-", "-", "-", "-", "Flagstaff, AZ"], date: 200528, tags: "flagstaff landscape", url: "1kvK-QYw3LLgFQDAAjXFpsvYJ79dXIY94"},
@@ -13,32 +17,106 @@ export default function Home() {
 		{metadata: ["Single Shot", "30mm", "1/100\"", "f/1.6", "ISO 3200", "Scottsdale, AZ"], date: 200824, tags: "dog portrait", url: "1yiepSGAu_dyG-iwT6o3WJuXVqO_QaCzk"}
 	];
 
-	const sortedImages = images.sort((a, b) => b.date - a.date);
-
+	// update sort order of {images} array upon update of activeSort variable in sort html
+	useEffect(() => {
+		const sortImages = type => {
+			if (type === 'newest') {
+				const sortedImages = [...images].sort((a, b) => b.date - a.date);
+				setSortedEntries(sortedImages);
+				console.log(sortedImages[0]);
+			}
+			else if (type === 'oldest') {
+				const sortedImages = [...images].sort((a, b) => a.date - b.date);
+				setSortedEntries(sortedImages);
+				console.log(sortedImages[0]);
+			}
+		}
+		sortImages(activeSort);
+	}, [activeSort]);
+	
 	return (
 		<>
-			<div className="filters">
-				<div onClick={()=> setActive('all')} className={`filter ${active === 'all' ? 'active' : ''}`}>All</div>
-				<div onClick={()=> setActive('landscape')} className={`filter ${active === 'landscape' ? 'active' : ''}`}>Landscapes</div>
-				<div onClick={()=> setActive('astrophotography')} className={`filter ${active === 'astrophotography' ? 'active' : ''}`}>Astrophotography</div>
-				<div onClick={() => setActive('portrait')} className={`filter ${active === 'portrait' ? 'active' : ''}`}>Portraits</div>
-				<div onClick={()=> setActive('car')} className={`filter ${active === 'car' ? 'active' : ''}`}>Cars</div>
+			<div className="search">
+				<div className="filters">
+					<div className="searchName">Search</div>
+					<div onClick={() => setSearchToggle(!searchToggle)} className={`collapseIcon ${!searchToggle ? 'left' : ''}`}>
+						<svg version="1.1" id="Capa_1" x="0px" y="0px" width="451.847px" height="451.847px" viewBox="0 0 451.847 451.847" style={{ enableBackground: 'new 0 0 451.847 451.847' }}><g><path d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z" /></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+					</div>
+				</div>
+				<div className={`filters ${!searchToggle ? 'hide' : ''}`}>
+					<div className="searchName">Filter</div>
+					<div onClick={()=> setActiveFilter('all')} className={`filter ${activeFilter === 'all' ? 'active' : ''}`}>All</div>
+					<div onClick={()=> setActiveFilter('landscape')} className={`filter ${activeFilter === 'landscape' ? 'active' : ''}`}>Landscapes</div>
+					<div onClick={()=> setActiveFilter('astrophotography')} className={`filter ${activeFilter === 'astrophotography' ? 'active' : ''}`}>Astrophotography</div>
+					<div onClick={() => setActiveFilter('portrait')} className={`filter ${activeFilter === 'portrait' ? 'active' : ''}`}>Portraits</div>
+					<div onClick={()=> setActiveFilter('car')} className={`filter ${activeFilter === 'car' ? 'active' : ''}`}>Cars</div>
+				</div>
+				<div className={`filters ${!searchToggle ? 'hide' : ''}`}>
+					<div className="searchName">Sort</div>
+					<div onClick={()=> setActiveSort('newest')} className={`filter ${activeSort === 'newest' ? 'active' : ''}`}>Date (Newest)</div>
+					<div onClick={()=> setActiveSort('oldest')} className={`filter ${activeSort === 'oldest' ? 'active' : ''}`}>Date (Oldest)</div>
+				</div>
 			</div>
 			<div className="grid">
-				{sortedImages.map(image => (
-					<Entry key={image} metadata={image['metadata']} date={image['date']} tags={image['tags']} url={image['url']} toggle={active} />
+				{sortedEntries.map(image => (
+					<Entry key={image} metadata={image['metadata']} date={image['date']} tags={image['tags']} url={image['url']} toggle={activeFilter} />
 				))}
 			</div>
 
 			<style jsx global>{`
+				.search{
+					padding: 1em 10vw;
+				}
 				.filters{
-					padding: 0 10vw;
-					padding-top: 2em;
+					padding: 1em 0;
 					display: flex;
 					flex-wrap: wrap;
 					align-itmes: center;
-					justify-content: center;
+					justify-content: left;
 					gap: .75em;
+					transition: all .2s ease;
+				}
+				.filters:first-of-type{
+					justify-content: space-between;
+					padding-top: 0;
+				}
+				.filters:first-of-type .searchName{
+					font-size: 1.8em;
+					font-weight: 500;
+				}
+				.collapseIcon{
+					width: 30px;
+                    height: auto;
+					display: flex;
+					align-items: center;
+					cursor: pointer;
+					transition: all .2s ease;
+				}
+				.collapseIcon:hover{
+					padding-top: .3em;
+				}
+				.collapseIcon.left:hover{
+					padding-top: 0;
+					margin-right: .3em;
+				}
+				.collapseIcon svg{
+					width: 100%;
+					height: 100%;
+					transition: transform .2s ease;
+				}
+				.left svg{
+					transform: rotate(90deg);
+				}
+				.hide{
+					margin-top: -4.2em;
+					opacity: 0;
+					pointer-events: none;
+				}
+				.searchName{
+					padding: .15em 0;
+					width: 100px;
+					font-weight: 300;
+					font-size: 1.5em;
 				}
 				.filter{
 					margin: 0;
@@ -55,7 +133,7 @@ export default function Home() {
 					border: 2px solid transparent;
 				}
 				.grid{
-					padding: 3em 10vw;
+					padding: 2em 10vw;
 					columns: 3;
 					column-gap: 1.5em;
 					// display: grid;
