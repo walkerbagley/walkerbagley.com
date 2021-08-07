@@ -60,7 +60,7 @@ export default function Home() {
 			</div>
 			<div className="grid">
 				{sortedEntries.map(image => (
-					<Link href={`/image/[photograph]?photograph${image['id']}&metadata=${image['metadata']}&date=${image['date']}&url=${image['url']}`} as={`/image/${image['id']}`}>
+					<Link key={image['id']} href={`/image/[photograph]?photograph${image['id']}&metadata=${image['metadata']}&date=${image['date']}&url=${image['url']}`} as={`/image/${image['id']}`}>
 						<a>
 							<Entry key={image['id']} metadata={image['metadata']} date={image['date']} tags={image['tags']} url={image['url']} toggle={activeFilter} showData={false}/>
 						</a>

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Entry from "../../components/Entry";
 
-export default function photoPage() {
+export default function PhotoPage() {
     const router = useRouter();
     const {photograph} = router.query;
     const metadata = router.query['metadata'].split(',');
