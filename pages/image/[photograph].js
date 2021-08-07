@@ -13,15 +13,6 @@ export default function PhotoPage() {
     console.log(url);
     
     return (
-        <>
-            <div className="wrapper">
-                <Entry metadata={metadata} date={date} tags='' url={url} toggle='' showData={true} />
-            </div>
-            <style jsx global>{`
-                .wrapper{
-                    padding: 0 10vw;
-                }
-            `}</style>
-        </>
+        <Entry metadata={metadata} date={date} tags='' url={url} toggle='' showData={true} />
     )
 }

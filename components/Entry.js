@@ -23,7 +23,6 @@ export default function Entry({ metadata, date, tags, url, toggle, showData }) {
 
     // console.log(metadata);
     // console.log(dateContent);
-    console.log(finalURL);
 
     if (!showData) {
         return (
