@@ -46,6 +46,9 @@ export default function Entry({ metadata, date, tags, url, toggle, showData }) {
                         max-width: 100%;
                         max-height: 350px; 
                     }
+                    .hide{
+                        display: none;
+                    }
                     @keyframes slide{
                         from{
                             margin-top: -5em;
@@ -89,17 +92,36 @@ export default function Entry({ metadata, date, tags, url, toggle, showData }) {
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
-                    padding-bottom: 1.5em;
                     //animation: slide .2s 2s ease;
                 }
                 .image img{
-                    max-width: 100%;
-                    max-height: 350px; 
+                    max-width: 50%;
+                    max-height: 100%;
                 }
                 .data,
                 .metadata,
                 .other{
                     display: flex;
+                    align-items: start;
+                    padding-top: 1em;
+                }
+                .data{
+                    width: 100%;
+                    justify-content: space-between;
+                }
+                .entry,
+                .date,
+                .location{
+                    padding: .35em .65em;
+                    margin: .5em;
+                    background-color: var(--shadow);
+                    border-radius: .35em;
+                }
+                .entry:first-of-type{
+                    margin-left: 0;
+                }
+                .location{
+                    margin-right: 0;
                 }
                 @keyframes slide{
                     from{
@@ -109,6 +131,23 @@ export default function Entry({ metadata, date, tags, url, toggle, showData }) {
                     to{
                         margin-top: 0;
                         opacity: 1;
+                    }
+                }
+                @media only screen and (max-width: 900px) {
+                    .metadata{
+                        flex-direction: column;
+                    }
+                    .entry{
+                        margin-left: 0;
+                    }
+                }
+                @media only screen and (max-width: 500px) {
+                    .other{
+                        flex-direction: column;
+                        align-items: flex-end;
+                    }
+                    .date{
+                        margin-right: 0;
                     }
                 }
             `}</style>
