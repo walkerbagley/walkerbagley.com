@@ -62,7 +62,7 @@ export default function Home() {
 				{sortedEntries.map(image => (
 					<Link key={image['id']} href={`/image/[photograph]?photograph${image['id']}&metadata=${image['metadata']}&date=${image['date']}&url=${image['url']}`} as={`/image/${image['id']}`}>
 						<a>
-							<Entry key={image['id']} metadata={image['metadata']} date={image['date']} tags={image['tags']} url={image['url']} toggle={activeFilter} showData={false}/>
+							<Entry metadata={image['metadata']} date={image['date']} tags={image['tags']} url={image['url']} toggle={activeFilter} showData={false}/>
 						</a>
 					</Link>
 				))}
