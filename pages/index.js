@@ -1,30 +1,104 @@
 import React, { useState } from 'react'
 import Entry from '../components/Entry'
-import Modal from '../components/Modal'
 
 export default function Home() {
-	const [active, setActive] = useState('all');
+	const [searchToggle, setSearchToggle] = useState(false);
+	const [activeFilter, setActiveFilter] = useState('all');
+	const [activeSort, setActiveSort] = useState('newest');
+	const [sortedEntries, setSortedEntries] = useState([]);
+	const [openModal, setOpenModal] = useState(false);
+
+	// Array of Entry objects to populate gallery in mapping function html
+	let images = [
+		{metadata: ["Single Shot", "30mm", "1/1250\"", "f/2", "ISO 100", "Moon Valley, AZ"], date: 201017, tags: "sunset car", url: "1NzvR57wR9Bz3uq7tS943w6q7DkqUPDUq"},
+		{metadata: ["Single Shot", "-", "-", "-", "-", "Flagstaff, AZ"], date: 200528, tags: "flagstaff landscape", url: "1kvK-QYw3LLgFQDAAjXFpsvYJ79dXIY94"},
+		{metadata: ["Single Shot", "-", "-", "-", "-", "Grand Canyon, AZ"], date: 200528, tags: "grandCanyon landscape", url: "1w7HnIgYBw8Cs234qOwFrzPI1dNgSsdf5"},
+		{metadata: ["Single Shot", "35mm", "5\"", "f/1.4", "ISO 50", "Saguaro Lake, AZ"], date: 210707, tags: "astrophotography landscape", url: "1qfht4XgM0X1Npe9yEfqH0STqqTPxfPK6"},
+		{metadata: ["Panorama", "35mm", "15\"", "f/1.4", "ISO 400", "Saguaro Lake, AZ"], date: 210707, tags: "astrophotography landscape", url: "1_cIQaIP2_mWnf7z6RgGOYr9RDE4abyJ_"},
+		{metadata: ["Single Shot", "30mm", "1/100\"", "f/1.6", "ISO 3200", "Scottsdale, AZ"], date: 200824, tags: "dog portrait", url: "1yiepSGAu_dyG-iwT6o3WJuXVqO_QaCzk"}
+	];
+
+	
+
+	// update sort order of {images} array upon update of activeSort variable in sort html
+	useEffect(() => {
+		const sortImages = type => {
+			if (type === 'newest') {
+				const sortedImages = [...images].sort((a, b) => b.date - a.date);
+				setSortedEntries(sortedImages);
+				console.log(sortedImages[0]);
+			}
+			else if (type === 'oldest') {
+				const sortedImages = [...images].sort((a, b) => a.date - b.date);
+				setSortedEntries(sortedImages);
+				console.log(sortedImages[0]);
+			}
+		}
+		sortImages(activeSort);
+	}, [activeSort]);
 	
 	return (
 		<>
-			<Modal active={ active}/>
-			<div className="filters">
-				<div onClick={()=> setActive('all')} className={`filter ${active === 'all' ? 'active' : ''}`}>All</div>
-				<div onClick={()=> setActive('landscape')} className={`filter ${active === 'landscape' ? 'active' : ''}`}>Landscapes</div>
-				<div onClick={()=> setActive('astrophotography')} className={`filter ${active === 'astrophotography' ? 'active' : ''}`}>Astrophotography</div>
-				<div onClick={() => setActive('portrait')} className={`filter ${active === 'portrait' ? 'active' : ''}`}>Portraits</div>
-				<div onClick={()=> setActive('car')} className={`filter ${active === 'car' ? 'active' : ''}`}>Cars</div>
+			<div className={`modal ${!openModal ? 'hideModal' : ''}`}>
+				<div className="entryContainer">
+					<Entry metadata={images[0]['metadata']} date={images[0]['date']} tags={images[0]['tags']} url={images[0]['url']} toggle={activeFilter} />
+				</div>
+			</div>
+			<div className="search">
+				<div className="filters">
+					<div className={`searchName ${!searchToggle ? 'left' : ''}`}>Search</div>
+					<div onClick={() => setSearchToggle(!searchToggle)} className={`collapseIcon ${!searchToggle ? 'left' : ''}`}>
+						<svg version="1.1" id="Capa_1" x="0px" y="0px" width="451.847px" height="451.847px" viewBox="0 0 451.847 451.847" style={{ enableBackground: 'new 0 0 451.847 451.847' }}><g><path d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z" /></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+					</div>
+				</div>
+				<div className={`filters ${!searchToggle ? 'hideFilter' : ''}`}>
+					<div className="searchName">Filter</div>
+					<div onClick={()=> setActiveFilter('all')} className={`filter ${activeFilter === 'all' ? 'active' : ''}`}>All</div>
+					<div onClick={()=> setActiveFilter('landscape')} className={`filter ${activeFilter === 'landscape' ? 'active' : ''}`}>Landscapes</div>
+					<div onClick={()=> setActiveFilter('astrophotography')} className={`filter ${activeFilter === 'astrophotography' ? 'active' : ''}`}>Astrophotography</div>
+					<div onClick={() => setActiveFilter('portrait')} className={`filter ${activeFilter === 'portrait' ? 'active' : ''}`}>Portraits</div>
+					<div onClick={()=> setActiveFilter('car')} className={`filter ${activeFilter === 'car' ? 'active' : ''}`}>Cars</div>
+				</div>
+				<div className={`filters ${!searchToggle ? 'hideFilter' : ''}`}>
+					<div className="searchName">Sort</div>
+					<div onClick={()=> setActiveSort('newest')} className={`filter ${activeSort === 'newest' ? 'active' : ''}`}>Date (Newest)</div>
+					<div onClick={()=> setActiveSort('oldest')} className={`filter ${activeSort === 'oldest' ? 'active' : ''}`}>Date (Oldest)</div>
+				</div>
 			</div>
 			<div className="grid">
-				<Entry metadata={{ "0": "Single Shot", "1": "30mm", "2": "1/1250\"", "3": "f/2", "4": "ISO 100", "5": "17 Oct 2020", "6": "Moon Valley, AZ" }} tags={{ "0": "sunset", "1": "car" }} url="https://drive.google.com/uc?export=view&id=1NzvR57wR9Bz3uq7tS943w6q7DkqUPDUq" toggle={active}/>
-				<Entry metadata={{ "0": "Single Shot", "1": "-", "2": "-", "3": "-", "4": "-", "5": "28 May 2020", "6": "Flagstaff, AZ" }} tags={{ "0": "flagstaff", "1": "landscape" }} url="https://drive.google.com/uc?export=view&id=1kvK-QYw3LLgFQDAAjXFpsvYJ79dXIY94" toggle={active} />
-				<Entry metadata={{ "0": "Single Shot", "1": "-", "2": "-", "3": "-", "4": "-", "5": "28 May 2020", "6": "Grand Canyon, AZ" }} tags={{ "0": "grandCanyon", "1": "landscape" }} url="https://drive.google.com/uc?export=view&id=1w7HnIgYBw8Cs234qOwFrzPI1dNgSsdf5" toggle={active} />
-				<Entry metadata={{ "0": "Single Shot", "1": "35mm", "2": "5\"", "3": "f/1.4", "4": "ISO 50", "5": "7 Jul 2021", "6": "Saguaro Lake, AZ" }} tags={{ "0": "astrophotography", "1": "landscape" }} url="https://drive.google.com/uc?export=view&id=1qfht4XgM0X1Npe9yEfqH0STqqTPxfPK6" toggle={active} />
-				<Entry metadata={{ "0": "Panorama", "1": "35mm", "2": "15\"", "3": "f/1.4", "4": "ISO 400", "5": "7 Jul 2021", "6": "Saguaro Lake, AZ" }} tags={{ "0": "astrophotography", "1": "landscape" }} url="https://drive.google.com/uc?export=view&id=1_cIQaIP2_mWnf7z6RgGOYr9RDE4abyJ_" toggle={active} />
-				<Entry metadata={{ "0": "Single Shot", "1": "30mm", "2": "1/100\"", "3": "f/1.6", "4": "ISO 3200", "5": "24 Aug 2020", "6": "Scottsdale, AZ" }} tags={{ "0": "dog", "1": "portrait" }} url="https://drive.google.com/uc?export=view&id=1yiepSGAu_dyG-iwT6o3WJuXVqO_QaCzk" toggle={active} />
+				{sortedEntries.map(image => (
+					<Entry key={sortedEntries.indexOf(image)}  metadata={image['metadata']} date={image['date']} tags={image['tags']} url={image['url']} toggle={activeFilter} />
+				))}
 			</div>
 
 			<style jsx global>{`
+				// *{
+				// 	max-height: 100vh;
+				// 	overflow-Y: hidden;
+				// }
+				.modal{
+					width: 100vw;
+					height: calc(100vh - 3.75em);
+					position: absolute;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					background-color: #22222255;
+					backdrop-filter: blur(10px);
+					z-index: 9999;
+					scroll: none;
+				}
+				.hideModal{
+					display: none;
+				}
+				.entryContainer{
+					max-width: 80vw;
+					max-height: 70vh;
+				}
+				.search{
+					padding: 2em 10vw;
+					overflow: hidden;
+				}
 				.filters{
 					padding: 0 10vw;
 					padding-top: 2em;
@@ -54,6 +128,7 @@ export default function Home() {
 					background-color: var(--primary);
 					columns: 3;
 					column-gap: 1.5em;
+					z-index: 1;
 					// display: grid;
 					// grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 					// grid-template-rows: repeat(auto-fit, minmax(1fr, min-content));
