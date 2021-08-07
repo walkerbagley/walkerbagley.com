@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import styles from './Entry.module.css'
 
-export default function Entry({ metadata, date, tags, url, toggle }) {
+export default function Entry({ metadata, date, tags, url, toggle, showData }) {
+
     let classList = "container " + String(tags);
 
     // Show/hide entry based on selected tag
@@ -23,12 +24,49 @@ export default function Entry({ metadata, date, tags, url, toggle }) {
     // console.log(metadata);
     // console.log(dateContent);
 
+    if (!showData) {
+        return (
+            <>
+                <div className={classList} onContextMenu={(e)=>e.preventDefault()}>
+                    <div className={styles.image}><Image src={finalURL} className={styles.next} layout="fill" objectFit='cover'></Image></div>
+                </div>
+                <style jsx global>{`
+                    .container{
+                        width: 100%;
+                        height: 100%;
+                        // border: 3px solid red;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        padding-bottom: 1.5em;
+                        //animation: slide .2s 2s ease;
+                    }
+                    .image img{
+                        max-width: 100%;
+                        max-height: 350px; 
+                    }
+                    @keyframes slide{
+                        from{
+                            margin-top: -5em;
+                            opacity: 0;
+                        }
+                        to{
+                            margin-top: 0;
+                            opacity: 1;
+                        }
+                    }
+                `}</style>
+            </>
+        )
+    }
+
     return (
         <>
             <div className={classList} onContextMenu={(e)=>e.preventDefault()}>
                 <div className={styles.image}><Image src={finalURL} className={styles.next} layout="fill" objectFit='cover'></Image></div>
 
-                <div className="data hide">
+                <div className="data">
                     <div className="metadata">
                         <div className="entry">{metadata[0]}</div>
                         <div className="entry">{metadata[1]}</div>
@@ -58,8 +96,10 @@ export default function Entry({ metadata, date, tags, url, toggle }) {
                     max-width: 100%;
                     max-height: 350px; 
                 }
-                .hide{
-                    display: none;
+                .data,
+                .metadata,
+                .other{
+                    display: flex;
                 }
                 @keyframes slide{
                     from{

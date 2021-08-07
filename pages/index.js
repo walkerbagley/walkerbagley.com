@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 import Entry from '../components/Entry'
 
 export default function Home() {
@@ -9,12 +10,12 @@ export default function Home() {
 
 	// Array of Entry objects to populate gallery in mapping function html
 	let images = [
-		{metadata: ["Single Shot", "30mm", "1/1250\"", "f/2", "ISO 100", "Moon Valley, AZ"], date: 201017, tags: "sunset car", url: "1NzvR57wR9Bz3uq7tS943w6q7DkqUPDUq"},
-		{metadata: ["Single Shot", "-", "-", "-", "-", "Flagstaff, AZ"], date: 200528, tags: "flagstaff landscape", url: "1kvK-QYw3LLgFQDAAjXFpsvYJ79dXIY94"},
-		{metadata: ["Single Shot", "-", "-", "-", "-", "Grand Canyon, AZ"], date: 200528, tags: "grandCanyon landscape", url: "1w7HnIgYBw8Cs234qOwFrzPI1dNgSsdf5"},
-		{metadata: ["Single Shot", "35mm", "5\"", "f/1.4", "ISO 50", "Saguaro Lake, AZ"], date: 210707, tags: "astrophotography landscape", url: "1qfht4XgM0X1Npe9yEfqH0STqqTPxfPK6"},
-		{metadata: ["Panorama", "35mm", "15\"", "f/1.4", "ISO 400", "Saguaro Lake, AZ"], date: 210707, tags: "astrophotography landscape", url: "1_cIQaIP2_mWnf7z6RgGOYr9RDE4abyJ_"},
-		{metadata: ["Single Shot", "30mm", "1/100\"", "f/1.6", "ISO 3200", "Scottsdale, AZ"], date: 200824, tags: "dog portrait", url: "1yiepSGAu_dyG-iwT6o3WJuXVqO_QaCzk"}
+		{id: "1", metadata: ["Single Shot", "30mm", "1/1250\"", "f/2", "ISO 100", "Moon Valley, AZ"], date: 201017, tags: "sunset car", url: "1NzvR57wR9Bz3uq7tS943w6q7DkqUPDUq"},
+		{id: "2", metadata: ["Single Shot", "-", "-", "-", "-", "Flagstaff, AZ"], date: 200528, tags: "flagstaff landscape", url: "1kvK-QYw3LLgFQDAAjXFpsvYJ79dXIY94"},
+		{id: "3", metadata: ["Single Shot", "-", "-", "-", "-", "Grand Canyon, AZ"], date: 200528, tags: "grandCanyon landscape", url: "1w7HnIgYBw8Cs234qOwFrzPI1dNgSsdf5"},
+		{id: "4", metadata: ["Single Shot", "35mm", "5\'", "f/1.4", "ISO 50", "Saguaro Lake, AZ"], date: 210707, tags: "astrophotography landscape", url: "1qfht4XgM0X1Npe9yEfqH0STqqTPxfPK6"},
+		{id: "5", metadata: ["Panorama", "35mm", "15\"", "f/1.4", "ISO 400", "Saguaro Lake, AZ"], date: 210707, tags: "astrophotography landscape", url: "1_cIQaIP2_mWnf7z6RgGOYr9RDE4abyJ_"},
+		{id: "6", metadata: ["Single Shot", "30mm", "1/100\"", "f/1.6", "ISO 3200", "Scottsdale, AZ"], date: 200824, tags: "dog portrait", url: "1yiepSGAu_dyG-iwT6o3WJuXVqO_QaCzk"}
 	];
 
 	// update sort order of {images} array upon update of activeSort variable in sort html
@@ -59,7 +60,11 @@ export default function Home() {
 			</div>
 			<div className="grid">
 				{sortedEntries.map(image => (
-					<Entry key={image} metadata={image['metadata']} date={image['date']} tags={image['tags']} url={image['url']} toggle={activeFilter} />
+					<Link href={`/image/[photograph]?photograph${image['id']}&metadata=${image['metadata']}&date=${image['date']}&url=${image['url']}`} as={`/image/${image['id']}`}>
+						<a>
+							<Entry key={image['id']} metadata={image['metadata']} date={image['date']} tags={image['tags']} url={image['url']} toggle={activeFilter} showData={false}/>
+						</a>
+					</Link>
 				))}
 			</div>
 
